@@ -1,16 +1,35 @@
-## Hi there 👋
+<sub> 
+안녕하세요. 개발자를 준비하며 Python, Transfromer, Encoder 및 Decoder 등을 공부하고 있습니다. <br>
+바이브 코딩을 통해 모듈과 구조를 설계하던 상황에서 벗어나기 위해 프로그래머스 문제들을 풀어보는 -python-programmers_practice 레포지스트리를 통해 알고리즘을 공부하고 있으며 <br>
+개인용 AI 에이전트 구축을 위한 프로젝트를 설계하고 있습니다.
+스스로의 능력을 벗어난 프로젝트의 경우, AI 활용 → 독자구현 시도 → 실패 시 바이브 코딩 → 코드 검산 및 분석 → 비슷한 문제에서 독자구현 재시도 순으로 학습하고 있습니다. <br>
 
-<!--
-**kite9420/kite9420** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+</sub>
 
-Here are some ideas to get you started:
+### 계획중인 프로젝트
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+**1. 신경망 기반 번역 모듈 + Ollama Local 8B 기반 로컬 AI 에이전트**
+
+한→영 번역 후 영어로 추론하고 결과를 한국어로 되돌려 소형 모델의 한국어 약점을 우회하는 번역 파이프라인 위에, 자신의 정체성·학습한 지식·직접 만든 도구를 로컬 저장소에 파일로 누적하고, tool calling으로 파일과 기억을 직접 다루는 에이전트를 구상 중입니다.
+
+**워크스페이스 구조**
+```
+agent_workspace/
+├── identity/     # 성격·정체성 텍스트
+├── memory/       # 대화 기록, 학습한 사실 (SQLite 또는 파일)
+├── knowledge/    # 모아둔 문서·자료
+├── tools/        # AI가 직접 만든 파이썬 도구
+└── outputs/      # 작업 산출물
+```
+
+**도구(tool calling) 목록**
+```
+read_file(path)         # 파일 읽기
+write_file(path, text)  # 파일 쓰기/저장
+list_files(dir)         # 디렉터리 목록
+search_memory(query)    # 기억·지식 검색 (RAG)
+save_tool(name, code)   # 생성한 도구 저장
+run_tool(name, args)    # 저장한 도구 실행
+```
+
+모델이 위 도구를 tool calling으로 호출해 파일·기억을 다루고, 결과를 다시 입력받아 작업이 끝날 때까지 반복하는 에이전트 루프로 동작하도록 설계 중입니다.
